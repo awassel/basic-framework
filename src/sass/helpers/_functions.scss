@@ -1,0 +1,49 @@
+// ----------------------------------
+//  Calculate Letter Spacing
+// ----------------------------------
+
+@function letterspace ($number) {
+  @return 0em + ($number / 1000);
+}
+
+// ----------------------------------
+//  Calculate Columns
+// ----------------------------------
+
+@function column_width () {
+  @return (100% - ($gutter * ($max-columns - 1))) / $max-columns;
+}
+
+// Calculate Grid Column Widths
+@function columns ($number){
+  @return (column_width() * $number) + ($gutter * ($number - 1)); // (One column * 'x') + (gutter * ('x' - 1)) = Column Width
+}
+
+@function column_width_nogutter () {
+  @return (100% / $max-columns);
+}
+
+// Calculate Grid Column Widths
+@function columns_nogutter ($number){
+  @return (column_width_nogutter() * $number); // (One column * 'x') + (gutter * ('x' - 1)) = Column Width
+}
+
+// Calculate Push Class Margins
+@function push_x ($number, $first-child: false) {
+  @if $first-child {
+    @return (column_width() * $number) + ($gutter * ($number - 1)) + $gutter;
+  }
+  @else {
+    @return (column_width() * $number) + ($gutter * ($number - 1)) + ($gutter * 2); // Column width + (gutter * 2)
+  }
+}
+
+// Calculate Pull Class Margins
+@function pull_x ($number, $width) {
+  @return -((column_width() * $number) + ($gutter * ($number - 1)) + (column_width() * $width) + ($gutter * ($width - 1)) + $gutter); // Pull width + column width + gutter
+}
+
+// Calculate Centered Class Margins
+@function centered ($number) {
+  @return 50% - ((($number * (column_width())) + (($number - 1) * $gutter)) / 2);
+}

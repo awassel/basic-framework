@@ -1,0 +1,14 @@
+{
+  "name": "basic",
+  "version": "0.0.1",
+  "description": "Packages needed to install Basic CSS Grid Framework developed by Addam Wassel",
+  "author": "awassel",
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-cli": "^0.1.13",
+    "grunt-sync": "^0.0.7",
+    "grunt-contrib-compass": "^0.9.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-open": "^0.2.3"
+  }
+}

@@ -1,0 +1,41 @@
+// ==================================
+// Breakpoints
+// ==================================
+
+$breakpoint-default-feature: max-width;
+
+// Smartphone
+$smartphone-min: 320px;
+$smartphone-small-max: 480px;
+$smartphone-max: 586px;
+
+// Tablet
+$tablet-min: 767px;
+$tablet-android: 800px;
+$tablet-max: 1024px;
+
+
+
+
+// =================================
+//  Grid Options
+// =================================
+
+$max-columns: 12;
+$max-viewport-width: 1280px;
+$max-content-width: 960px;
+$content-width-percentage: percentage($max-content-width / $max-viewport-width);
+$outer-gutter: percentage((($max-viewport-width - $max-content-width)/2) / $max-viewport-width);
+$gutter: 1%;
+$aside-width: 30%;
+
+
+
+
+// =================================
+//  Color Options
+// =================================
+
+$white: #ffffff;
+$black: #000000;
+$grey: #666666;

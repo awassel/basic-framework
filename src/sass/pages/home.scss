@@ -1,0 +1,11 @@
+@import "base/global";
+
+.col {
+  border: 1px solid $grey;
+  background-color: rgba(red($grey), green($grey), blue($grey), 0.3);
+
+  &.header {
+    border: none;
+    background-color: transparent;
+  }
+}

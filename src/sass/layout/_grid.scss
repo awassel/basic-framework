@@ -1,0 +1,111 @@
+@import "base/global";
+
+/* Establish vertical baseline grid */
+@include establish-baseline;
+
+/* Define our columns */
+.col {
+  @extend %col;
+  margin-left: $gutter;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+/* Sometimes you need a row within your slot */
+.row {
+  padding: 0 $outer-gutter;
+  margin-bottom: rhythm(1);
+  @extend %clearfix;
+
+  @include breakpoint($tablet-max) {
+    padding: 0 $gutter;
+  }
+}
+
+
+/*
+ 2.2 Twelve Column Grid
+ ------------------------------------------------
+*/
+@for $i from 1 through $max-columns - 1 {
+  .span-#{$i} {
+    width: columns($i);
+  }
+}
+.span-#{$max-columns} {
+  width: 100%;
+  margin-left: 0;
+}
+
+/*
+ 2.3 Twelve Column Grid with No Gutter
+ ------------------------------------------------
+*/
+@for $i from 1 through $max-columns {
+  .span-nogutter-#{$i} {
+    width: columns_nogutter($i);
+    margin-left: 0;
+  }
+}
+
+
+/*
+ 2.4 Push/Pull Columns
+ ------------------------------------------------
+*/
+@for $i from 1 through $max-columns - 1 {
+  .push-#{$i} {
+    margin-left: push_x($i);
+
+    &:first-child {
+      margin-left: push_x($i, true);
+    }
+
+    &.ignore-first-child:first-child {
+      margin-left: push_x($i);
+    }
+  }
+
+  .span-#{$i} {
+    @for $j from 1 through $max-columns - 1 {
+      &.pull-#{$j} {
+        margin-left: pull_x($i, $j);
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        &.ignore-first-child:first-child {
+          margin-left: pull_x($i, $j);
+        }
+      }
+    }
+  }
+}
+
+
+/*
+ 2.5 Centered Columns
+ ------------------------------------------------
+*/
+@for $i from 1 through $max-columns - 1 {
+  .span-#{$i}.centered {
+    margin-left: centered($i);
+  }
+}
+
+
+/*
+ 2.6 Single Column Grid
+ ------------------------------------------------
+*/
+@include breakpoint($smartphone-max) {
+  @for $i from 1 through $max-columns {
+    .span-#{$i}, .span-nogutter-#{$i} {
+      margin-left: 0 !important;
+      width: 100%;
+    }
+  }
+}

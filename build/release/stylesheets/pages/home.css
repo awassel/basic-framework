@@ -1,0 +1,10 @@
+/* line 3, ../../../../src/sass/pages/home.scss */
+.col {
+  border: 1px solid #666666;
+  background-color: rgba(102, 102, 102, 0.3);
+}
+/* line 7, ../../../../src/sass/pages/home.scss */
+.col.header {
+  border: none;
+  background-color: transparent;
+}
