@@ -24,7 +24,7 @@ module.exports = function(grunt) {
     compass: {
       options: { sassDir: 'src/sass', require: [ 'breakpoint' ]},
       dev: { options: { cssDir: 'build/dev/stylesheets' } },
-      release: { options: { outputStyle: 'expanded', cssDir: 'build/release/stylesheets' } }
+      release: { options: { outputStyle: 'compressed', cssDir: 'build/release/stylesheets' } }
     },
 
     open: { file: { path: 'build/release/bcc-output.txt' } },
