@@ -1,0 +1,115 @@
+# SASS Directory Manual
+
+## Structure
+
+All .scss files are located with the `sass/` directory. There is only one Sass file at the root level: `main.scss`. All the other files are divided into appropriate folders and prefixed with an underscore (_) to tell Sass they are partial .scss files that shouldn't be compiled to .css files. Indeed, it is the base file's role to import and merge all of those.
+
+### Base
+
+The `base/` folder holds what we might call the boilerplate stuff for your project. In there, you might find the reset (or Normalize.css, or whatever), probably some stuff dealing with typography, and, depending on the project, maybe some other files.
+
+### Helpers
+
+The `helpers/` folder gathers all Sass tools and helpers we'll use across the project. Got a function? A mixin? Put it in there. This folder also contains a _variables.scss file which holds all global variables for the project (for typography, color schemes, and so on).
+
+### Layout
+
+The `layout/` directory usually contains a number of files, each of them setting some styles for the main sections of the layout (header, footer, and so on). It also contains the _grid file which is the grid system used to build the layout.
+
+### Components
+
+For smaller components, there is the `components/` folder. While layout/ is kind of macro (defining the global wireframe), `components/` is more micro. It can contain all kinds of specific modules like a slider, a loader, a widget, or anything along those lines. There are usually a lot of files in `components/` since your site is should be mostly composed of tiny modules.
+
+### Pages
+
+If you have page-specific styles, I think it's cool to put them in a `pages/` folder and in a file named after the page. For example, it's not uncommon to have very specific styles for the home page, so you'd have a _home.scss file in pages/ dealing with this.
+
+### Vendors
+
+And last but not least, you will probably have a `vendors/` folder containing all the CSS files from external libraries and frameworks - Bootstrap, jQueryUI, FancyCarouselSliderjQueryPowered, and so on. Putting those aside in the same folder is a good way to tell "Hey, this is not from me, not my code, not my responsibility".
+
+
+
+## Current Implementation and Best Practices
+
+Once everything has been installed, we're ready to start Compass and start editing our files.
+
+### Running Compass/Sass
+
+Compass has a watch option which will, as it sounds, watch for all file changes in the /sass directory. When a change occurs that requires it to rebuild the CSS, it will automatically recompile those files with the settings/destination provided in the config.rb file.
+
+To use this, simply navigate to the project root in your terminal, e.g.:
+
+  $ cd /path/to/project
+  $ compass watch
+
+There's no need to manually compile files or keep track of them - this completely eliminates the need to touch .css files.
+
+### Configuring Compass
+
+Configuration is kept in the config.rb file usually located in the root of the brand-name.mvc (pullups.mvc, poise.mvc, etc) folder. From there, you can change whether the css output is minified (useful when you need to debug fully compiled CSS). Please be careful not to commit changes to this file without talking to other developers first.
+
+### CSS3Pie
+
+For projects that support IE8 and IE9, we're also using the CSS3Pie Compass extension. You can read more about it here: http://compass-style.org/reference/compass/css3/pie/
+
+It can be installed to a new project using the following command:
+
+  $ compass install compass/pie
+
+
+
+## Best Practices
+
+### Partials
+
+Files that begin with an _ are not compiled into .css files. This means they are generally utility files (such as _grid and _base). On some occasions they are used to define modules that are incorporated into a larger stylesheet.
+
+Files such as screen.scss are not responsible for actually defining styles. If a file only contains imports, it's safe to assume that it's simply being used to combine modules. Rather than having one big "global" stylesheet for us to develop in, we split them off into components (such as header, footer, etc.) and then use that global stylesheet (in this case screen.scss) to combine them.
+
+### Filenames
+
+Filenames for .scss files should be lowercase and use dashes to separate words, not spaces or underscores. The exception to not using underscores in filenames is that "partial" .scss files must begin with an underscore.
+
+### Imports and Mixins
+
+Specifically define imports that you are using, e.g., `@import "compass/css3/opacity"`, rather than simply including the entire compass library, i.e., `@import "compass"`. This will improve stylesheet compilation performance.
+
+When possible, use native Compass mixins. This sometimes requires looking in the Compass documentation, but these mixins are helpful as they either extend basic CSS functionality or provide improved browser support. For instance, browser prefixes will be automatically generated by compass instead of having to type them manually.
+
+YES
+
+  @include opacity(0.8);
+
+NO
+
+  opacity: 0.8;
+
+YES
+
+  @include border-radius(10px);
+
+NO
+
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+
+### Nesting
+
+Sass avoids repetition by nesting selectors within one another.
+As an example:
+
+  .content {
+    background-color: green;
+    .heading-h1 {
+      color: red;
+    }
+  }
+
+... compiles to ...
+
+  .content { background-color: green; }
+  .content .heading-h1 { color: red; }
+
+**As a rule, we try to never nest more than 4 levels deep**. This helps speeds up Sass compilation and developer readability.
