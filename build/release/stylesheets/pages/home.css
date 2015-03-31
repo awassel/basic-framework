@@ -1,10 +1,1 @@
-/* line 3, ../../../../src/sass/pages/home.scss */
-.col {
-  border: 1px solid #666666;
-  background-color: rgba(102, 102, 102, 0.3);
-}
-/* line 7, ../../../../src/sass/pages/home.scss */
-.col.header {
-  border: none;
-  background-color: transparent;
-}
+.col{background-color:rgba(102,102,102,0.3);border:1px solid #666;padding:6px;font-size:0.75em;line-height:2em;-webkit-border-radius:6px;-moz-border-radius:6px;-ms-border-radius:6px;-o-border-radius:6px;border-radius:6px}.col.header{border:none;background-color:transparent}.col[class^="push-"],.col[class*=" push-"]{background-color:rgba(0,0,0,0.3)}.col[class^="pull-"],.col[class*=" pull-"]{background-color:rgba(102,102,102,0.6)}

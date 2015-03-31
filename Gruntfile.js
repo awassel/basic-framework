@@ -30,6 +30,7 @@ module.exports = function(grunt) {
     open: { file: { path: 'build/release/bcc-output.txt' } },
 
     watch: {
+      files: { files: 'src/**/*.*', tasks: ['sync:dev'] },
       css: { files: 'src/**/*.scss', tasks: ['compass:dev'] }
     }
 

@@ -24,6 +24,7 @@ $tablet-max: 1024px;
 $max-columns: 12;
 $max-viewport-width: 1280px;
 $max-content-width: 960px;
+$min-content-width: $smartphone-min;
 $content-width-percentage: percentage($max-content-width / $max-viewport-width);
 $outer-gutter: percentage((($max-viewport-width - $max-content-width)/2) / $max-viewport-width);
 $gutter: 1%;

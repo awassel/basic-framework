@@ -17,6 +17,8 @@
 .row {
   padding: 0 $outer-gutter;
   margin-bottom: rhythm(1);
+  min-width: $min-content-width;
+  max-width: $max-viewport-width;
   @extend %clearfix;
 
   @include breakpoint($tablet-max) {
